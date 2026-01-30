@@ -702,47 +702,340 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* Responsive Design - Enhanced */
+        
+        /* Large tablets and small laptops (1024px and below) */
         @media (max-width: 1024px) {
-            .letter-section,
-            .evolution-grid,
-            .team-grid,
-            .fees-grid,
-            .process-description,
-            .projects-columns,
+            section {
+                padding: 100px 40px;
+            }
+
+            .letter-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-info-box {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .evolution-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .fees-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-description {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .projects-columns {
+                column-count: 1;
+            }
+
             .process-step {
                 grid-template-columns: 1fr;
-                column-count: 1;
+                gap: 30px;
             }
 
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
         }
 
+        /* Tablets (768px and below) */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
-                gap: 20px;
-                padding: 20px;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            nav .logo {
+                font-size: 1.3rem;
             }
 
             nav ul {
-                gap: 20px;
+                gap: 15px;
                 flex-wrap: wrap;
                 justify-content: center;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 0 20px;
+                min-height: 100vh;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
+                letter-spacing: 2px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero .team {
+                font-size: 0.95rem;
+            }
+
+            .hero .client-logo {
+                font-size: 1.5rem;
             }
 
             section {
-                padding: 80px 30px;
+                padding: 80px 25px;
+            }
+
+            section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .team-member .photo {
+                width: 180px;
+                height: 180px;
             }
 
             .portfolio-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .evolution-section,
+            .thank-you-section {
+                margin: 0 -25px;
+                padding: 80px 25px;
+            }
+
+            .evolution-column,
+            .fee-card,
+            .process-content,
+            .process-description-item {
+                padding: 35px;
+            }
+
+            .projects-list {
+                padding: 40px;
+            }
+
+            .password-container {
+                padding: 40px;
+                width: 95%;
+            }
+
+            .password-container h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile phones (480px and below) */
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 15px;
+            }
+
+            nav .logo {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 10px;
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero .date {
+                font-size: 0.85rem;
+            }
+
+            .hero .team {
+                font-size: 0.9rem;
+            }
+
+            .hero .client-logo {
+                font-size: 1.3rem;
+                margin-top: 40px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .letter-content p,
+            .evolution-intro p,
+            .vision-statement p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .contact-info-box,
+            .evolution-column,
+            .fee-card,
+            .process-content,
+            .process-description-item,
+            .projects-list {
+                padding: 25px;
+            }
+
+            .team-member .photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .team-member h3 {
+                font-size: 1.5rem;
+            }
+
+            .team-member .bio {
+                font-size: 0.9rem;
+            }
+
+            .fee-card .price {
+                font-size: 1.8rem;
+            }
+
+            .fee-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .process-content h3 {
+                font-size: 1.4rem;
+            }
+
+            .password-container {
+                padding: 30px 25px;
+            }
+
+            .password-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .password-input,
+            .password-button {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+
+            .evolution-section,
+            .thank-you-section {
+                margin: 0 -20px;
+                padding: 60px 20px;
+            }
+
+            .thank-you-section p {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 30px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Extra small devices (360px and below) */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            section h2 {
+                font-size: 1.7rem;
+            }
+
+            nav ul {
+                font-size: 0.75rem;
+                gap: 8px;
+            }
+
+            .contact-info-box,
+            .evolution-column,
+            .fee-card,
+            .process-content,
+            .projects-list {
+                padding: 20px;
+            }
+
+            .team-member .photo {
+                width: 130px;
+                height: 130px;
+            }
+
+            .password-container h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Landscape mobile orientation */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 120px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .team,
+            .hero .client-logo {
+                margin-top: 30px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav {
+                position: static;
+            }
+
+            .password-screen {
+                display: none;
+            }
+
+            .main-content {
+                opacity: 1 !important;
+            }
+
+            section {
+                page-break-inside: avoid;
+                padding: 40px 20px;
+            }
+
+            .evolution-section,
+            .thank-you-section {
+                margin: 0;
             }
         }
     </style>
@@ -812,14 +1105,14 @@
                         <h4>Primary Contact</h4>
                         <p>Maria Matis Kennedy<br>
                         (213) 300-1563<br>
-                        maria@matiscreative.com</p>
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6805091a01092805091c011b0b1a0d091c011e0d460b0705">[email&#160;protected]</a></p>
                     </div>
                     
                     <div class="contact-block">
                         <h4>Secondary Contact</h4>
                         <p>Ruben Ruckman, RA<br>
                         (512) 963-6103<br>
-                        ruben@rmrarchitecture.com</p>
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="15676077707b556778677467767d7c617076616067703b767a78">[email&#160;protected]</a></p>
                     </div>
                 </div>
 
@@ -1217,7 +1510,7 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Password protection - SAME AS BEFORE
         const CORRECT_PASSWORD = 'ceremony2026';
 
@@ -1254,15 +1547,4 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const navHeight = 80;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                  
