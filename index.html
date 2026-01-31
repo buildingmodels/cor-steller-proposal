@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceremony of Roses - Concept / SD Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Futura+PT:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage-green: #A5B5A1;
+            --warm-beige: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --accent-gold: #D4AF37;
+            --light-sage: #C8D5C4;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--warm-beige);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Futura PT', 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Password Screen */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--light-sage) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .password-screen.hidden {
+            display: none;
+        }
+
+        .password-container {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 2px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        .password-container h2 {
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+
+        .password-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #E0E0E0;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+
+        .password-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--sage-green);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-family: 'Futura PT', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .password-button:hover {
+            background: #8FA08B;
+        }
+
+        .error-message {
+            color: #D32F2F;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .main-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Futura PT', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--light-sage) 100%);
+            color: white;
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .hero .date {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--charcoal);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+
+        /* Letter Section */
+        .letter-section {
+            background: white;
+        }
+
+        .letter-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .letter-content ul {
+            margin: 20px 0 20px 25px;
+            color: #555;
+        }
+
+        .letter-content li {
+            margin-bottom: 8px;
+        }
+
+        .contact-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-box {
+            background: var(--warm-beige);
+            padding: 25px;
+            border-radius: 2px;
+            border-left: 3px solid var(--sage-green);
+        }
+
+        .contact-box h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage-green);
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .contact-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Evolution Section */
+        .evolution-section {
+            background: var(--warm-beige);
+        }
+
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .evolution-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--sage-green);
+            font-weight: 400;
+        }
+
+        .evolution-column ul {
+            list-style: none;
+        }
+
+        .evolution-column li {
+            padding: 12px 0;
+            border-bottom: 1px solid #E0E0E0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .evolution-column li:last-child {
+            border-bottom: none;
+        }
+
+        .vision-statement {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 2px;
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .vision-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            font-style: italic;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin: 60px 0;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 3px solid var(--sage-green);
+        }
+
+        .team-member .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .team-member .role {
+            font-size: 0.9rem;
+            color: var(--sage-green);
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .team-member .bio {
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Projects List */
+        .projects-list {
+            margin: 60px 0;
+            background: var(--warm-beige);
+            padding: 50px;
+            border-radius: 2px;
+        }
+
+        .projects-list h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .projects-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-item {
+            padding: 20px;
+            background: white;
+            border-radius: 2px;
+            border-left: 3px solid var(--sage-green);
+        }
+
+        .project-item strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--charcoal);
+        }
+
+        .project-item {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: var(--warm-beige);
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .process-phase {
+            background: white;
+            padding: 30px;
+            border-radius: 2px;
+            border-top: 4px solid var(--sage-green);
+            text-align: center;
+        }
+
+        .process-phase h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .process-phase .duration {
+            font-size: 0.85rem;
+            color: var(--sage-green);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .process-phase ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .process-phase li {
+            font-size: 0.85rem;
+            padding: 5px 0;
+            color: #666;
+        }
+
+        .process-phase li:before {
+            content: "• ";
+            color: var(--sage-green);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Fees Section */
+        .fees-section {
+            background: white;
+        }
+
+        .fees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .fee-card {
+            background: var(--warm-beige);
+            padding: 40px;
+            border-radius: 2px;
+            border-left: 4px solid var(--sage-green);
+        }
+
+        .fee-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .fee-card .price {
+            font-size: 2rem;
+            color: var(--sage-green);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .fee-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .fee-note {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--warm-beige);
+            border-radius: 2px;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Thank You Section */
+        .thank-you-section {
+            background: var(--warm-beige);
+            text-align: center;
+        }
+
+        .thank-you-section h2 {
+            margin-bottom: 30px;
+        }
+
+        .thank-you-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .letter-grid,
+            .evolution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-columns {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="passwordScreen" class="password-screen">
+        <div class="password-container">
+            <h2>CEREMONY OF ROSES</h2>
+            <p>This proposal is confidential. Please enter the password to continue.</p>
+            <input 
+                type="password" 
+                id="passwordInput" 
+                class="password-input" 
+                placeholder="Enter password"
+            >
+            <button onclick="checkPassword()" class="password-button">Enter</button>
+            <p id="errorMessage" class="error-message">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-container">
+                <a href="#" class="logo">MATIS CREATIVE</a>
+                <ul class="nav-links">
+                    <li><a href="#letter">Introduction</a></li>
+                    <li><a href="#evolution">Evolution</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#fees">Fees</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>CONCEPT / SCHEMATIC DESIGN PROPOSAL</h1>
+            <p class="subtitle">8439 Steller Drive</p>
+            <p class="date">January 30, 2026</p>
+            <p style="margin-top: 40px; font-size: 1rem;"><strong>Maria Matis Kennedy</strong><br>Creative Direction & Interior Design</p>
+            <p style="margin-top: 20px; font-size: 0.95rem;"><em>with</em></p>
+            <p style="font-size: 1rem;"><strong>Ruben Ruckman, RA</strong> and <strong>Juliet Chang, AIA</strong><br>Architecture</p>
+            <p style="margin-top: 30px; font-size: 0.95rem;"><em>for</em></p>
+            <img src="images/logo/ceremony-of-roses.jpg" alt="Ceremony of Roses" style="max-width: 200px; margin: 20px auto; display: block;">
+        </section>
+
+        <!-- Letter Section -->
+        <section id="letter" class="letter-section">
+            <h2>Dear Ceremony Of Roses</h2>
+            <div class="letter-grid">
+                <div class="letter-content">
+                    <p>Thank you for the opportunity to present you with our design proposal for 8439 Steller Drive.</p>
+                    
+                    <p>It was a pleasure to get some extra time with you while drafting our Block Plan Study. All the insight was invaluable, and we look forward to learning more. It is our understanding that you would like to see a 2.0 version of your current office, and we are under the assumption that you will be taking the full approximately 38,000 square feet vacancy at Steller. We have established that it is a little over 4x your current spaces.</p>
+                    
+                    <p>In the proposal you will see the following pages:</p>
+                    <ul>
+                        <li>Growth and Evolution</li>
+                        <li>Version 2.0 Vibe and Function</li>
+                        <li>Depth of Our Experience</li>
+                        <li>Who We Are</li>
+                        <li>Process and Approach</li>
+                        <li>Professional Fees</li>
+                    </ul>
+                    
+                    <p>We hope it demonstrates that:</p>
+                    <ul>
+                        <li>We understand the design vernacular and see a fresh take for 2.0</li>
+                        <li>You can trust our taste level</li>
+                        <li>We have the breadth of experience to handle the project</li>
+                        <li>We have spent a lot of time carefully considering the scope and fees</li>
+                    </ul>
+                    
+                    <p style="margin-top: 40px;"><strong>Kind Regards,</strong><br>Maria Kennedy, Ruben Ruckman, Juliet Chang</p>
+                </div>
+                
+                <div class="contact-boxes">
+                    <div class="contact-box">
+                        <h4>Primary Contact</h4>
+                        <p>
+                            <strong>Maria Matis Kennedy</strong><br>
+                            (213) 300-1563<br>
+                            maria@matiscreative.com
+                        </p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <h4>Secondary Contact</h4>
+                        <p>
+                            <strong>Ruben Ruckman, RA</strong><br>
+                            (512) 963-6103<br>
+                            ruben@rmrarchitecture.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evolution Section -->
+        <section id="evolution" class="evolution-section">
+            <h2>Growth and Evolution</h2>
+            <p style="font-size: 1.15rem; margin-bottom: 40px; color: #555;"><strong>A Vision for 2027:</strong> We understand the visual vernacular of the current office, and the design references. We feel the 2.0 version should keep a design thread, but pivot into adjacent aesthetics, so it feels familiar but not redundant. This also allows you to repurpose. We propose taking cues from other prominent projects by the architects that were heavily referenced in V 1.0.</p>
+            
+            <div class="evolution-grid">
+                <div class="evolution-column">
+                    <h3>We love these design principles from your current office:</h3>
+                    <ul>
+                        <li>High Design Client-Facing Spaces</li>
+                        <li>Harmony of Soft and Hard Materials Coexisting</li>
+                        <li>Rich, Warm Color Palette</li>
+                        <li>Built-in Storage Solutions</li>
+                        <li>Lighting as Art</li>
+                        <li>Clean and Neat</li>
+                        <li>Residential Feel</li>
+                    </ul>
+                </div>
+                
+                <div class="evolution-column">
+                    <h3>We'd love to add these to your new space:</h3>
+                    <ul>
+                        <li>More Curves and Soft Edges</li>
+                        <li>Lightness in Feel</li>
+                        <li>Inject Some Moments of Unexpected Color Pairings</li>
+                        <li>Interesting Separation of Spaces</li>
+                        <li>Flexible Spaces</li>
+                        <li>Variety of Work Space Types for All Employees</li>
+                        <li>Furniture That Fits Both Aesthetic and Utility</li>
+                        <li>Select Areas with Hospitality Feel</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="vision-statement">
+                <p><strong>Our overarching goal will be to maintain a sophisticated visual language, but to keep the function of a space at the forefront.</strong></p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="portfolio-section">
+            <h2>Depth of Experience</h2>
+            
+            <h3 style="font-size: 1.8rem; margin: 60px 0 30px; font-weight: 300;">Hospitality & Commercial Excellence</h3>
+            <p style="color: #666; margin-bottom: 40px;">We have successfully delivered spaces for leading brands and properties, combining high design with functional excellence.</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/portfolio/equinox-reception.jpg" alt="Equinox Reception">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio/equinox-studio.jpg" alt="Equinox Studio">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio/nobu-entrance.jpg" alt="Nobu Entrance">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio/nobu-meeting.jpg" alt="Nobu Meeting Room">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/portfolio/moet-hennessy-lobby.jpg" alt="Moet Hennessy Lobby">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/inspiration/niemeyer-hq-lounge.jpg" alt="Lounge Design">
+                </div>
+            </div>
+            
+            <h3 style="font-size: 1.8rem; margin: 80px 0 30px; font-weight: 300;">Residential & Office Design</h3>
+            <p style="color: #666; margin-bottom: 40px;">Our residential and office work showcases our ability to create intimate, personalized spaces with attention to every detail.</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="images/residential/living-room-1.jpg" alt="Living Room Interior">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/residential/living-room-2.jpg" alt="Living Space">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/residential/dining-room.jpg" alt="Dining Room">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/residential/lounge-seating.jpg" alt="Lounge Seating">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/residential/audio-console.jpg" alt="Custom Audio Console">
+                </div>
+                <div class="portfolio-item">
+                    <img src="images/residential/airstream.jpg" alt="Airstream Interior">
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team-section">
+            <h2>Who We Are</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 60px; color: #666; font-style: italic;">A reliable team that leads with creativity, collaboration and expertise</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="photo">
+                        <img src="images/team/maria-headshot.jpg" alt="Maria Matis Kennedy">
+                    </div>
+                    <h3>Maria Matis Kennedy</h3>
+                    <p class="role">Creative Direction, Interior Design</p>
+                    <p class="bio">Maria specializes in high-end residential remodels and furnishing, as well as custom millwork and furniture design, office design, and multifamily remodeling. She brings a thoughtful approach, striving to best analyze clients' needs and wants. Maria holds a BS in International Marketing from USC, Interior Architecture certification from UCLA, and an in-progress MIA from Cal Poly.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="photo">
+                        <img src="images/team/ruben-headshot.jpg" alt="Ruben Ruckman">
+                    </div>
+                    <h3>Ruben Ruckman, RA</h3>
+                    <p class="role">Lead Architect, Creative Collaboration</p>
+                    <p class="bio">Ruben delivers a distinctively technical approach to commercial architecture, merging the rigorous standards of global firms with the precision of industrial product design. His seven-year tenure at a leading architectural practice provided a foundation in executing complex, large-scale geometries. This experience, combined with his background in commercial fabrication detailing for furniture design, allows him to bring a unique, innovative perspective to structural assembly and material application. A licensed California Architect, Ruben specializes in delivering environments that are as meticulously detailed as they are architecturally significant. He holds a BS from UCSB, and a Master of Architecture from UT Austin.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="photo">
+                        <img src="images/team/juliet-headshot.jpg" alt="Juliet Chang">
+                    </div>
+                    <h3>Juliet Chang, AIA</h3>
+                    <p class="role">Consulting Architect, Creative Collaboration</p>
+                    <p class="bio">For Juliet, architecture exists at the intersection of rigorous design and intentional craft. With over 15 years of experience across luxury hospitality, commercial spaces, and custom homes, she brings technical expertise and high-caliber execution. She holds an M.Arch I from UCLA and a BS in Civil Engineering.</p>
+                </div>
+            </div>
+            
+            <div class="projects-list">
+                <h3>Select List of Completed Projects</h3>
+                <div class="projects-columns">
+                    <div class="project-item">
+                        <strong>AFM Sag Aftra Fund, Office Remodel</strong><br>
+                        Current - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Rimpau Residential Interiors</strong><br>
+                        Current - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Brentwood Concierge Clinic and Offices</strong><br>
+                        2025 - J. Chang, Project Lead, Concept-CA with Montalba Architects
+                    </div>
+                    <div class="project-item">
+                        <strong>The Lawn Brentwood Retail and Offices</strong><br>
+                        2025 - J. Chang, Project Co-lead, DD-CA with Montalba Architects
+                    </div>
+                    <div class="project-item">
+                        <strong>Benda, Residential Interior Architecture</strong><br>
+                        2025 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Equinox Fitness Clubs</strong><br>
+                        2014-2025 - J. Chang, Project Lead, Concept-CA with Montalba Architects (Seattle, SF, Vancouver, Hollywood, Century City+)
+                    </div>
+                    <div class="project-item">
+                        <strong>Sweetgreen Office Design Concepts</strong><br>
+                        2024 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>WME, Personal Office Furnishing</strong><br>
+                        2023, 2024 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Yangban Society</strong><br>
+                        2024 - R. Ruckman, Architect, Concept-CA
+                    </div>
+                    <div class="project-item">
+                        <strong>Terremoto.LA, Office Design TI</strong><br>
+                        2023 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Moët Hennessy NY HQ Lobby and Offices</strong><br>
+                        2023 - J. Chang, Project Lead, Concept-CA with Montalba Architects
+                    </div>
+                    <div class="project-item">
+                        <strong>Starlit Sky House (Joshua Tree)</strong><br>
+                        2023 - R. Ruckman, Architect, Concept-CA
+                    </div>
+                    <div class="project-item">
+                        <strong>Intelligentsia Renovation (Venice)</strong><br>
+                        2020 - R. Ruckman, Architect, Concept-CA with RAD Furniture
+                    </div>
+                    <div class="project-item">
+                        <strong>Nike (Mar Vista, Beaverton)</strong><br>
+                        2021 - R. Ruckman, Custom Furniture Design with RAD Furniture
+                    </div>
+                    <div class="project-item">
+                        <strong>Sweetgreen (nationwide locations)</strong><br>
+                        2017-21 - R. Ruckman, Custom Furniture Design with RAD Furniture
+                    </div>
+                    <div class="project-item">
+                        <strong>Snap Canteen (Santa Monica)</strong><br>
+                        2019 - R. Ruckman, Concept-CA with RAD Furniture
+                    </div>
+                    <div class="project-item">
+                        <strong>Lucerne, Residential Interior Design</strong><br>
+                        2021 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Nobu Hotel Palo Alto</strong><br>
+                        2020 - J. Chang, Job Captain, SD-CD with Montalba Architects
+                    </div>
+                    <div class="project-item">
+                        <strong>Baxter, Residential Interior Design</strong><br>
+                        2020 - M. Kennedy, Principal, Matis Creative
+                    </div>
+                    <div class="project-item">
+                        <strong>Sensei Lanai Farm Headhouse</strong><br>
+                        2019 - J. Chang, Project Lead, Interiors with Montalba Architects
+                    </div>
+                    <div class="project-item">
+                        <strong>LUMA Foundation (Arles, France)</strong><br>
+                        2017 - R. Ruckman, Designer, Concept-CD with Gehry Partners
+                    </div>
+                    <div class="project-item">
+                        <strong>Citizens of Humanity LA showroom</strong><br>
+                        2015 - J. Chang, Job Captain, SD-CD with Montalba Architects
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="process-section">
+            <h2>Process and Approach</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 60px; color: #666; font-style: italic;">Our projects are built around a high service and high touch experience</p>
+            
+            <div class="process-timeline">
+                <div class="process-phase">
+                    <h3>Project Startup</h3>
+                    <p class="duration">± 1-2 weeks</p>
+                    <ul>
+                        <li>Due diligence</li>
+                        <li>Discovery sessions</li>
+                        <li>Site analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="process-phase">
+                    <h3>Schematic Design</h3>
+                    <p class="duration">± 6 weeks</p>
+                    <ul>
+                        <li>Concept ideation</li>
+                        <li>Floor plans</li>
+                        <li>Preliminary materials</li>
+                        <li>Key 3D views</li>
+                        <li>Physical model</li>
+                    </ul>
+                </div>
+                
+                <div class="process-phase">
+                    <h3>Design Development</h3>
+                    <p class="duration">± 6-8 weeks</p>
+                    <ul>
+                        <li>Full architectural set for permit</li>
+                        <li>Consultant coordination</li>
+                        <li>Material schedules</li>
+                        <li>Scope notes</li>
+                    </ul>
+                </div>
+                
+                <div class="process-phase">
+                    <h3>Construction Documents</h3>
+                    <p class="duration">± 10-12 weeks</p>
+                    <ul>
+                        <li>Full architectural set for bidding</li>
+                        <li>Consultant refinement</li>
+                        <li>Construction details</li>
+                        <li>Detailed schedules & specs</li>
+                    </ul>
+                </div>
+                
+                <div class="process-phase">
+                    <h3>Permitting</h3>
+                    <p class="duration">± TBD</p>
+                    <ul>
+                        <li>Submit to local agency</li>
+                        <li>Department clearances</li>
+                        <li>Ready to issue documents</li>
+                    </ul>
+                </div>
+                
+                <div class="process-phase">
+                    <h3>Bidding & Construction</h3>
+                    <p class="duration">± 6-8 months</p>
+                    <ul>
+                        <li>Site visits</li>
+                        <li>Site reports</li>
+                        <li>Response to RFIs</li>
+                        <li>Coordination meetings</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 2px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px; font-weight: 400;">Substantial Completion</h3>
+                <p style="font-size: 1.1rem; color: var(--sage-green); font-weight: 500;">Estimated Q1/Q2 2027 · Target February 2027</p>
+                <p style="margin-top: 20px; color: #666;">Kickoff February 2026</p>
+            </div>
+        </section>
+
+        <!-- Fees Section -->
+        <section id="fees" class="fees-section">
+            <h2>Professional Fees</h2>
+            <p style="color: #666; margin-bottom: 40px; line-height: 1.8;">The following fees show an estimated range based on 38,000sf fully built out at (±)$160-200/sf construction budget with a February 2026 start date and continuing through Q1/Q2 2027. Fees to be adjusted commensurate to final construction budget at completion of SD phase.</p>
+            
+            <div class="fees-grid">
+                <div class="fee-card">
+                    <h3>Schematic Design Phase</h3>
+                    <p class="price">$122,000</p>
+                    <p style="font-size: 0.9rem; color: #999; margin-bottom: 20px;">Fixed Fee · 6 Weeks Duration</p>
+                    <p>This is the brainstorming session. We will work together to determine the basic layout, circulation and seat count for the space. A basic physical model and 3D model is often used to aid in the design process.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Included:</strong> Due Diligence (code research, resource gathering) and Discovery (client stakeholder inquiry and interviews).</p>
+                </div>
+                
+                <div class="fee-card">
+                    <h3>Design Development Phase</h3>
+                    <p class="price">$530,000-$574,000</p>
+                    <p style="font-size: 0.9rem; color: #999; margin-bottom: 20px;">Projected Fee</p>
+                    <p>Documenting the detail design decisions on exterior and interior configurations including enlarged plans, elevations and details.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Plus Consultant Allowance:</strong> $150,000 (MEP, Lighting, Acoustic)</p>
+                </div>
+                
+                <div class="fee-card">
+                    <h3>Construction Documents</h3>
+                    <p style="font-size: 1.3rem; color: var(--sage-green); font-weight: 500; margin-bottom: 15px;">Included in Design Development</p>
+                    <p>A complete set of contract documents, coordinated with structural engineering and any other consultants, with which to obtain a permit from the local agency.</p>
+                </div>
+                
+                <div class="fee-card">
+                    <h3>Construction Administration</h3>
+                    <p class="price">$105,000</p>
+                    <p style="font-size: 0.9rem; color: #999; margin-bottom: 20px;">Projected Fee · $4,000/week · 26 Week Duration</p>
+                    <p>Responding to any questions, change orders or request for information from the contractor with detailed drawings or other written and verbal responses.</p>
+                </div>
+            </div>
+            
+            <div class="fee-note">
+                <p style="margin-bottom: 15px;"><strong>Note:</strong> Consultant fees will be separate (MEP, lighting, acoustic) pending completion of SD phase.</p>
+                
+                <p style="margin-bottom: 15px;"><strong>Reimbursable Expenses:</strong> Not covered in these fees and may include, but are not limited to, printing, shipping, parking, plan check and other building department fees, and other consultants such as kitchen, mechanical, electrical, plumbing, civil, structural, HVAC and energy calculations.</p>
+
+                <p style="margin-bottom: 15px;"><strong>Optional Services:</strong> Outside of base scope include coordination of delivery and installation, exterior site work, entitlements, as-built drawings, BOMA calculations, kitchen/bar equipment, value engineering, furniture audit, signage, storage/warehousing, OS&E and artwork, permit expediting, IT/AV design, landscape design, and LEED certification.</p>
+
+                <p>This proposal is for planning purposes only. Upon your approval, the Designers will prepare a formal Professional Services Agreement for execution. Work will commence upon mutual execution of the formal agreement and receipt of the initial retainer.</p>
+            </div>
+        </section>
+
+        <!-- Thank You Section -->
+        <section class="thank-you-section">
+            <h2>Thank You</h2>
+            <p>Thank you so much for your time. Our team is confident that we understand the design vernacular and see a fresh take for 2.0, that you can trust our taste level, that we have the breadth of experience to handle the project, and that we spent a lot of time carefully considering the scope and fees.</p>
+            <p style="margin-top: 40px; font-size: 1rem; font-style: italic;">
+                Client references and full CVs available upon request.
+            </p>
+        </section>
+
+        <footer>
+            <p>© 2026 Matis Creative & RMR Architecture. All project images and content are proprietary.<br>
+            This presentation contains privileged and confidential information.</p>
+        </footer>
+    </div>
+
+    <script>
+        const CORRECT_PASSWORD = 'ceremony2026';
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('errorMessage');
+            const passwordScreen = document.getElementById('passwordScreen');
+            const mainContent = document.getElementById('mainContent');
+
+            if (input.value === CORRECT_PASSWORD) {
+                passwordScreen.classList.add('hidden');
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.classList.add('visible');
+                }, 100);
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+                setTimeout(() => {
+                    error.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Setup when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('passwordInput');
+            if (input) {
+                input.focus();
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
